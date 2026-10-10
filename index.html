@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flashcard BD — ফ্ল্যাশকার্ড বিডি</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="logo" aria-hidden="true">🃏</span><span data-i18n="appName">Flashcard BD</span></div>
+  <div class="top-actions">
+    <button id="btn-export" class="btn ghost sm">⤓ <span data-i18n="export">Export</span></button>
+    <button id="btn-import" class="btn ghost sm">⤒ <span data-i18n="import">Import</span></button>
+    <button id="btn-lang" class="btn ghost sm" data-i18n="langBtn">বাংলা</button>
+  </div>
+  <input type="file" id="file-import" accept="application/json,.json" hidden>
+</header>
+
+<main>
+  <!-- DECKS -->
+  <section id="view-decks" class="view">
+    <div class="page-head">
+      <div>
+        <h1 data-i18n="decksTitle">Your decks</h1>
+        <p class="muted" data-i18n="tagline">Spaced repetition for exam prep</p>
+      </div>
+      <button id="btn-new-deck" class="btn primary" data-i18n="newDeck">+ New deck</button>
+    </div>
+    <div id="due-banner" class="due-banner hidden"></div>
+    <div id="deck-list" class="deck-grid"></div>
+  </section>
+
+  <!-- DECK DETAIL -->
+  <section id="view-deck" class="view hidden">
+    <div class="page-head">
+      <div>
+        <button id="btn-back-decks" class="btn ghost sm">← <span data-i18n="backToDecks">Back to decks</span></button>
+        <h1 id="deck-title"></h1>
+        <p class="muted" id="deck-sub"></p>
+      </div>
+      <div class="head-actions">
+        <button id="btn-study-deck" class="btn primary">📚 <span data-i18n="study">Study</span></button>
+        <button id="btn-add-card" class="btn ghost" data-i18n="addCard">+ Add card</button>
+      </div>
+    </div>
+    <div id="card-list" class="card-list"></div>
+  </section>
+
+  <!-- STUDY -->
+  <section id="view-study" class="view hidden">
+    <div class="study-top">
+      <button id="btn-exit-study" class="btn ghost sm">✕</button>
+      <span id="study-progress" class="muted"></span>
+      <span id="study-deck" class="muted"></span>
+    </div>
+    <div class="flip-wrap">
+      <div class="flip-card" id="flip-card" data-testid="flip-card">
+        <div class="flip-inner" id="flip-inner">
+          <div class="flip-face flip-front"><div id="study-front" data-testid="study-front"></div></div>
+          <div class="flip-face flip-back"><div id="study-back" data-testid="study-back"></div></div>
+        </div>
+      </div>
+    </div>
+    <p id="flip-hint" class="hint" data-i18n="tapToFlip">Tap the card to flip</p>
+    <div id="grade-row" class="grade-row hidden">
+      <button class="grade-btn again" data-grade="again" data-testid="grade-again"><b>1</b><span data-i18n="again">Again</span></button>
+      <button class="grade-btn hard" data-grade="hard" data-testid="grade-hard"><b>2</b><span data-i18n="hard">Hard</span></button>
+      <button class="grade-btn good" data-grade="good" data-testid="grade-good"><b>3</b><span data-i18n="good">Good</span></button>
+      <button class="grade-btn easy" data-grade="easy" data-testid="grade-easy"><b>4</b><span data-i18n="easy">Easy</span></button>
+    </div>
+    <p class="hint muted" data-i18n="gradeAfterFlip">Flip the card, then grade yourself honestly.</p>
+  </section>
+
+  <!-- SUMMARY -->
+  <section id="view-summary" class="view hidden">
+    <div class="summary-card">
+      <h1>🎉 <span data-i18n="sessionDone">Session complete!</span></h1>
+      <p class="muted" data-i18n="keepStudying">Keep going — consistency beats cramming.</p>
+      <div class="sum-stats">
+        <div><div class="sum-num" id="sum-reviewed">0</div><div class="muted" data-i18n="reviewed">Reviewed</div></div>
+        <div><div class="sum-num" id="sum-accuracy">0%</div><div class="muted" data-i18n="accuracy">Recalled (Good+Easy)</div></div>
+      </div>
+      <div id="sum-breakdown" class="sum-breakdown"></div>
+      <button id="btn-back-decks-2" class="btn primary" data-i18n="backToDecks">Back to decks</button>
+    </div>
+  </section>
+</main>
+
+<div id="modal-root"></div>
+<div id="toast" class="toast hidden" role="status"></div>
+
+<script src="js/sm2.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
